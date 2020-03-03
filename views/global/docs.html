@@ -44,7 +44,7 @@
         init: (list) => {
 
             list.forEach(item => {
-                var params = item[3];
+                var params = item[3] || {};
                 var exm = typeof(item[2]) == 'string' ? item[2] : item[2][0];
 
                 var setter = [
