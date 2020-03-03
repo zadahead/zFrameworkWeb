@@ -1,0 +1,20 @@
+
+<strip>
+    <line justify-start>
+        <tab data-href="zhttp">z-http</tab>
+        <tab data-href="zviews">z-views</tab>
+        <tab data-href="layout">layout</tab>
+        <tab data-href="uikit">uikit</tab>
+        <tab data-href="core">core</tab>
+    </line>
+</strip>
+
+<script>
+    var header = {
+        init: () => {
+            var pathname = window.location.pathname.split('/')[1];
+            $('[data-href="{0}"]'.format(pathname)).addClass('selected');
+        }
+    }
+    core.init.add(header.init);
+</script>

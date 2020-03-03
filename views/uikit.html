@@ -1,0 +1,53 @@
+<layout>
+    <box>
+        <cap>UIkit Documentations</cap>
+    </box>
+    <template src="/global/docs"></template>
+
+</layout>
+
+<script>
+
+    var radiobtn = [];
+    radiobtn.push('<radiobtn value="new">');
+    radiobtn.push('<opt data-value="all" info="info for all.">All</opt>');
+    radiobtn.push('<opt data-value="some" info="info for some.">Some Only</opt>');
+    radiobtn.push('</radiobtn>');
+
+
+    /// example functions and objects
+    var mylist = [
+        { id: 1, value: 'david' },
+        { id: 2, value: 'mosh' },
+        { id: 3, value: 'jiz' }
+    ]
+
+    var alertThis = () => {
+        alert('an action has been triggered');
+    }
+
+</script>
+
+<script>
+    var puikit = {
+        init: () => {
+            docs.init([
+                ['title', 'Title is used to highlight beginning of a subject/form/sentense', '<title>My Title:</title>'],
+                ['info', 'Info is for regular text arround the site', '<info>A great info is here</info>'],
+                ['headline', 'Headline ment for the head of a block of information', '<headline>Hello Mosh</headline>'],
+                ['cap', 'captions are the most larger fonts arround the page', '<cap>Example Caption</cap>'],
+                ['action', 'An action is basically a button a user need to click on', '<action>Click Me</action>'],
+                ['action (event)', 'when you want to bind an event to action (or any other tag) use data-action attribute and set an event', '<action data-action="alertThis">alert hello</action>'],
+                ['action (icon)', 'The same action features but with an icon attached', '<action plus >Add New Item</action>'],
+                ['icon', 'when ever an icon is needed', '<icon heart />'],
+                ['inpt', 'An input field for when you need to write text', '<inpt placeholder="write some text..." />'],
+                ['textbox', 'When you want to write a larger piece of text', '<textbox placeholder="write some large text..." />'],
+                ['datepicker', 'Pick up some date and time', '<datepicker />'],
+                ['dropdown', 'pick from a dropdown list[] { id, value }', '<dropdown list="mylist" def="Pick One" />'],
+                ['checkbox', 'checkbox', '<checkbox value="true"></checkbox>'],
+                ['radiobtn', 'radiobtn', radiobtn.join('\n')]
+            ])
+        }
+    }
+    core.init.await(puikit.init);
+</script>

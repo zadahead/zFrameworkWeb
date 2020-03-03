@@ -1,0 +1,80 @@
+@font-face {
+  font-family: 'icomoon';
+  src:  url('fonts/icomoon.eot?iea0cv');
+  src:  url('fonts/icomoon.eot?iea0cv#iefix') format('embedded-opentype'),
+    url('fonts/icomoon.ttf?iea0cv') format('truetype'),
+    url('fonts/icomoon.woff?iea0cv') format('woff'),
+    url('fonts/icomoon.svg?iea0cv#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoon' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-Twitter:before {
+  content: "\e900";
+}
+.icon-Youtube:before {
+  content: "\e901";
+}
+.icon-Notifications:before {
+  content: "\e902";
+}
+.icon-Add:before {
+  content: "\e903";
+}
+.icon-Add-full:before {
+  content: "\e904";
+}
+.icon-Reject:before {
+  content: "\e905";
+}
+.icon-Search:before {
+  content: "\e906";
+}
+.icon-Share:before {
+  content: "\e907";
+}
+.icon-Message:before {
+  content: "\e908";
+}
+.icon-Medal:before {
+  content: "\e909";
+}
+.icon-List:before {
+  content: "\e90a";
+}
+.icon-Query:before {
+  content: "\e90b";
+}
+.icon-Grid:before {
+  content: "\e90c";
+}
+.icon-Facebook:before {
+  content: "\e90d";
+}
+.icon-Error:before {
+  content: "\e90e";
+}
+.icon-Arrow:before {
+  content: "\e90f";
+}
+.icon-Instagram:before {
+  content: "\e910";
+}
+.icon-Confirmed:before {
+  content: "\e911";
+}

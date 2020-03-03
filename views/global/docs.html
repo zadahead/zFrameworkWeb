@@ -1,0 +1,105 @@
+<style>
+    s {
+        margin-right: 10px;
+    }
+</style>
+
+<sidewrap>
+    <sidemenu>
+        <box uik-fixer>
+            <headline>Content</headline>
+            <duplicator menu empty>
+                <tabblock title data-id data-action="docs.scrollTo"></tabblock>
+            </duplicator>
+        </box>
+
+    </sidemenu>
+    <sidemain>
+        <duplicator box empty>
+            <box type-form data-id>
+                <headline head></headline>
+                <content>
+                    <row>
+                        <info inf></info>
+                    </row>
+
+                    <row>
+                        <title>Example:</title>
+                    </row>
+                    <row type-carpet exm></row>
+
+                    <row res-wrap>
+                        <title>Result:</title>
+                    </row>
+                    <row res-wrap type-carpet res></row>
+                </content>
+            </box>
+        </duplicator>
+    </sidemain>
+</sidewrap>
+
+<script>
+    var docs = {
+
+        init: (list) => {
+
+            list.forEach(item => {
+                var params = item[3];
+                var exm = typeof(item[2]) == 'string' ? item[2] : item[2][0];
+
+                var setter = [
+                    ['tabblock', 'data-id', item[0]],
+                    ['tabblock', 'title', item[0], true]
+                ]
+
+                uikit.duplicator.append('menu', setter);
+
+                var setter = [
+                    ['box', 'data-id', item[0]],
+                    ['headline', 'head', '# ' + item[0], true],
+                    ['info', 'inf', item[1], true],
+                    ['row', 'exm', docs.to.exp(exm), true],
+                    ['row', 'res', exm, true]
+                ]
+
+                uikit.duplicator.append('box', setter, false, null, (n) => {
+                    var innerVal = exm;
+                    if (innerVal.indexOf('\<') == -1 || params.hideResults) {
+                       $('[res-wrap]', n).remove();
+                    }
+
+                    if (typeof (item[2]) == 'object') {
+                        var exms = item[2];
+                        for (let i = 1; i < exms.length; i++) {
+                            var cloned = $('[exm]', n).last().clone();
+                            cloned.html(docs.to.exp(exms[i]));
+
+                            $('[exm]', n).last().after(cloned);
+                        }
+                    }
+                });
+            });
+
+            uikit.set.all();
+        },
+
+        to: {
+            exp: (val) => {
+                return val.replace(/&lt;\_/gi, '&lt;').replace(/!--_/gi, '').replace(/-->/gi, '&gt;').replace(/\</gi, '&lt;').replace(/\\}/gi, '}').replace(/\\{/gi, '{').replace(/\</gi, '&lt;').replace(/\n/gi, '<br />').replace(/    /gi, '<s></s>');
+            }
+        },
+
+        scrollTo: (e) => {
+            $('tabblock').removeClass('selected');
+            var tabblock = gt('[data-id]', e);
+            tabblock.addClass('selected');
+
+            var id = tabblock.attr('data-id');
+            var section = $('box[data-id="{0}"]'.format(id));
+
+            $([document.documentElement, document.body]).animate({
+                scrollTop: section.offset().top - 50
+            }, 600);
+        }
+    }
+</script>

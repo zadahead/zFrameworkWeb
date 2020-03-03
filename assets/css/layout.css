@@ -1,0 +1,462 @@
+body, html {
+    background-color: #666;
+    margin: 0;
+    padding: 0;
+    height: unset;
+    width: -webkit-fill-available;
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    min-height: 100%;
+    display: grid;
+    grid-template-rows: 3em 1fr 2em;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+    height:8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #d0d0d0;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #888;
+}
+
+layout[theme="alter"] {
+  background-color: #fff;
+}
+
+layout[theme="alter"] box, layout[theme="alter"] layout {
+  background-color: #f5f5f5;
+}
+
+layout[spread] {
+   height: calc(100vh - 7em);
+}
+
+layout[skinny] {
+   padding:0;
+   width:100%;
+   height: auto;
+}
+
+layout {
+    background-color: #f5f5f5;
+    width: calc(100% - 2em);
+    padding: 1em;
+    height: fit-content;
+}
+
+box {
+    background-color: #fff;
+    padding: 1.0em 2.0em;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    border-radius: 0px;
+    width: calc(100% - 4em);
+    flex-direction: column;
+    position: relative;
+}
+
+box[skinny] {
+  padding:1em 0em;
+  width:100%
+}
+
+box[type-form] {
+    margin-bottom: 1em;
+}
+
+box[type-form] > headline {
+    align-self: flex-start;
+}
+
+box[type-form] > content {
+}
+
+content {
+    display: block;
+    width: calc(100% - 3em);
+    padding: 1.5em;
+}
+
+line {
+  display: flex;
+}
+
+line[type-carpet] {
+  background-color:#f9f9f9;
+  padding:0.2em 0.4em;
+}
+
+row {
+    display: block;
+    width: 100%;
+    margin-bottom: 1em;
+}
+
+row[type-carpet] {
+    background-color: #f8f8f8;
+    padding: 1em;
+    width: calc(100% - 2em);
+}
+
+[hid] {
+  display: none;
+}
+
+[center],
+[center-inner] > * {
+    display: flex;
+    justify-content: center;
+}
+
+[middle] {
+  display:flex;
+  align-items: center !important;
+}
+
+[width-med] {
+    width: auto;
+    min-width: 30em;
+    max-width: 50em;
+}
+
+[width-wide] {
+    width: 55em;
+}
+
+[width-wider] {
+    min-width: 55em;
+    max-width: 75em;
+}
+
+[width-thin] {
+    width: auto;
+    min-width: 30em;
+    max-width: 35em;
+}
+
+[pos-center] {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: -webkit-fill-available;
+    width: -webkit-fill-available;
+    margin: 0;
+    flex-direction: column;
+}
+
+[flex-end] {
+    display: flex;
+    align-items: flex-end;
+}
+
+[space-between] {
+    display: flex;
+    justify-content: space-between !important;
+}
+
+[space-evenly] {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+[justify-end] {
+    display: flex;
+    justify-content: flex-end;
+}
+
+[justify-start] {
+    display: flex;
+    justify-content: flex-start;
+}
+
+[justify-center] {
+    display: flex;
+    justify-content: center;
+}
+
+[spread-even-inner] > * {
+    flex: 1;
+}
+
+[spread-form-inner] > * {
+    flex: 1;
+    white-space: normal;
+}
+
+[spread-form-inner] > :first-child {
+    flex: 2;
+}
+
+[spread-form-inner] > :last-child {
+    flex: 5;
+}
+
+[margin] {
+  margin: 1em;
+}
+
+[margin-auto] {
+  margin: 0 auto;
+}
+
+[margin-side-thin] {
+  margin-left: .2em;
+  margin-right: .2em;
+}
+
+[margin-b] {
+  margin-bottom: 1em !important;
+}
+
+[margin-t] {
+  margin-top: 2em !important;
+}
+
+[margin-r] {
+  margin-right: 1em !important;
+}
+
+[margin-l] {
+  margin-left: 1em;
+}
+
+[margin-step] {
+  margin-left: 4em;
+}
+
+[padding-0] {
+  padding-bottom: 0em;
+  padding-top: 0;
+}
+
+[padding-b0] {
+  padding-bottom: 0em;
+}
+
+[padding-t0] {
+  padding-top: 0em;
+}
+
+[padding-t] {
+  padding-top: 1em;
+}
+
+[margin-0] {
+  margin-bottom: 0em;
+  margin-top: 0;
+}
+
+[margin-b0] {
+  margin-bottom: 0em;
+}
+
+[margin-t0] {
+  margin-top: 0;
+}
+
+[overflow-30] {
+   overflow: auto;
+   max-height: 25em;
+   padding-right: 3em;
+   border-top: 1px solid #f9f9f9;
+   border-bottom: 1px solid #f9f9f9;
+   padding-top: 1em;
+   padding-bottom: 1em;
+}
+
+[overflow-max] {
+   overflow: auto;
+   max-height: 53vh;
+   padding-right: 3em;
+   border-top: 1px solid #f9f9f9;
+   border-bottom: 1px solid #f9f9f9;
+   padding-top: 1em;
+   padding-bottom: 1em;
+}
+
+
+[border-b] {
+    border-bottom: 1px solid #e1e1e1;
+    padding-bottom: 1em;
+    padding-top: 1em;
+    margin-bottom: 0;
+}
+
+[border-b0] {
+    border-bottom: 1px solid #e1e1e1;
+    padding-bottom: 1em;
+    margin-bottom: 0;
+}
+
+[border-b]:last-child {
+  margin-bottom: 2em;
+}
+
+[border-t] {
+    border-top: 1px solid #e1e1e1;
+    padding-top: 1em;
+}
+
+[hover]:hover {
+    background-color:#f9f9f9;
+    cursor: pointer;
+}
+
+[hover]:active {
+    background-color:#f1f1f1;
+    cursor: pointer;
+}
+
+[hover-mark]:hover {
+    background-color:#f9f9f9;
+}
+
+[align-center], [align-center] * {
+   text-align: center;
+   justify-content: center;
+}
+
+[align-right] {
+   text-align: right;
+}
+
+[align-left] {
+   text-align: left !important;
+   justify-content: end;
+}
+
+[direction-column] {
+  flex-direction: column;
+}
+
+[flex-grid] {
+  display: flex;
+  align-items: flex-start;
+}
+
+[flex-grid] > * {
+  flex: 1;
+  white-space: normal;
+  text-align: center;
+}
+
+[flex-grid] > [flx2] {
+  flex: 2;
+  text-align: left;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+[flex-grid] > [flx3] {
+  flex: 3;
+}
+
+[flex-grid] > [flx4] {
+  flex: 4;
+}
+
+
+[flex-width] > * {
+  width: 100%;
+}
+
+grid {
+    display: grid;
+    grid-gap: 0;
+    margin: 0;
+    grid-auto-rows: auto;
+    grid-auto-columns: 1fr;
+    align-items: center;
+    width: 100%;
+}
+
+
+
+grid[rp-9] {
+  grid-template-columns: repeat(9, 1fr);
+}
+
+grid[rp-2] {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+grid[rp-3] {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+grid[fr-2-1] {
+  grid-template-columns: 2fr 1fr;
+}
+
+grid[fr-5-4] {
+  grid-template-columns: 5fr 4fr;
+}
+
+grid [span2] {
+    grid-column: span 2;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+
+grid[center] > * {
+  flex: 1;
+  text-align: center;
+}
+
+[inline] {
+  display: inline;
+}
+
+
+[data-lazy-name] {
+  position: relative;
+}
+
+
+[data-lazy-name] > pointer {
+    right: -2em;
+    top: 0;
+    width: auto !important;
+    z-index: 100000;
+}
+
+[data-lazy-name] > pointer {
+  cursor: pointer;
+  display: flex;
+  height: 26px;
+  background: #f9f9f9;
+  border: 1px solid #e1e1e1;
+  color: black;
+  padding: 0px .5em !important;
+  min-width: 40px;
+  justify-content: center;
+  align-items: center;
+  font-size: 1em;
+  padding: 0px 1em;
+  box-shadow: 1px 1px 3px #bdbdbd;
+}
+
+
+[data-lazy-name].on > * {
+  position: absolute;
+  width: 100%;
+  height: auto;
+  padding: .5em 0px;
+}

@@ -1,0 +1,121 @@
+<layout>
+    <box>
+        <row>
+            <cap>z-http Documentations</cap>
+        </row>
+        <row>
+            <info>z-http will handle your server.</info>
+        </row>
+    </box>
+    <template src="/global/docs"></template>
+
+</layout>
+
+
+<script>
+
+    var zhttp = {
+        init: () => {
+            docs.init([
+                ['install', 'A simple npm install', 'npm install z-http'],
+                ['start', 'A basic start', $('code[start]')[0].innerHTML],
+                ['start (route)', 'every time there is a route request, this message will be called', $('code[route]')[0].innerHTML],
+                ['start (params)', 'serveral params you can send when starting server', $('code[params]')[0].innerHTML],
+                ['status', 'list of available statuses you can use', $('code[status]')[0].innerHTML],
+                ['types', 'list of available content types you can use', $('code[types]')[0].innerHTML],
+            ])
+        }
+    }
+    core.init.await(zhttp.init);
+</script>
+
+
+
+<ghost>
+
+    <code start>
+        var http = require('z-http');
+        var port = 3000 //or what ever you like
+
+        http.start(port, onroute, params);
+    </code>
+
+    <code route>
+        http.start(port, (route) => {
+            return router; //router is the function you want to trigger on request
+        }, params);
+
+        var router = (data, callback) => {
+            /*
+                data is an object with the request info, like payload, querystring, method etc.
+            /*
+        }
+    </code>
+
+    <code params>
+        var params = {
+            
+            public: 'assets', //this is the name of the folder for where assests are at: like js, css, icons etc.
+            
+            maxFileSize: bytes, //set the maximum size for each request
+
+            useBuffer: true / false, //is you are planning to send buffered requests - set thie to true.
+
+            contentType: server.CONTENT_TYPE.JSON, //there is a list of content types you can use along the document
+
+            validation: function (data, callback) { //you can validate each request 
+                this.data = data;
+                this.callback = callback;
+                
+                this.trig = function () {
+                    var data = this.data;
+                    var callback = this.callback;
+                    
+                    var resp = { hello: 'world' }; //some response you like to add to the request, like decoded user
+                    
+                    var newRoute = (data, callback) => {
+
+                    } //a new route you want to send request to (example non valid page);
+
+
+                    callback(data, resp, newRoute);
+                }
+            },
+
+            onresponse: function (st, status) { //this will trigger after each respone, made for logging or alert
+                console.log(st, status);
+            }
+        }
+       
+    </code>
+
+    <code status>
+        server.STATUS = {
+            OK: 200,
+            NO_CONTENT: 204,
+            REDIRECT_URI: 308,
+            BAD_REQUEST: 400,
+            UNAUTHORIZED: 401,
+            FORBIDDEN: 403,
+            NOT_FOUND: 404,
+            CONFLICT: 409,
+            TOO_MANY: 429
+        };
+    </code>
+
+    <code types>
+        server.CONTENT_TYPE = {
+            HTML: 'html',
+            CSS: 'css',
+            JS: 'js',
+            ICO: 'ico',
+            JPEG: 'jpg',
+            WOFF2: 'woff2',
+            WOFF: 'woff',
+            TTF: 'ttf',
+            EOT: 'eot',
+            SVG: 'svg',
+            JSON: 'json'
+        }
+    </code>
+</ghost>

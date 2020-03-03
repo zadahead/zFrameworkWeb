@@ -1,0 +1,68 @@
+
+<layout data-form="test">
+    <box center-inner width-med>
+        <row><headline>{{headline}}</headline></row>
+        <row>
+            <inpt data-field="username" data-validate="empty, email" placeholder="username"></inpt>
+        </row>
+        <row>    
+            <inpt data-field="password" data-validate="empty" type="password" placeholder="password"></inpt>
+        </row>
+        <row border-b>
+            <action data-action="test.login">login</action>
+        </row>
+        <loop list>
+            <title>{{name}} - {{phone}}</title>
+        </loop>
+        
+        <row>    
+            <action data-action="test.loadMore">Load More</action>
+            <action data-action="test.loadMoreParam">Load with paran</action>
+        </row>
+
+        <copy sample>
+            <tilte>hello</tilte>
+        </copy>
+
+        <paste sample></paste>
+        <paste sample></paste>
+        <paste sample></paste>
+        <paste sample></paste>
+        <paste sample></paste>
+        <paste sample></paste>
+
+
+        <row data-section="more">
+
+        </row>
+
+        <row>
+            <action data-action="test.callAjax">get users</action>
+        </row>
+    </box ב>
+</layout>
+
+<script>
+    var test = {
+        login: () => {
+            explore.form('test', (f) => {
+                console.log('login clicked', f);
+            })
+        },
+
+        loadMore: () => {
+            section.set('more');
+        },
+
+        loadMoreParam: () => {
+            section.set('more', { name: 'Adeel' });
+        },
+
+        callAjax: () => {
+            ajax.get('users/get', null, (res) => {
+                console.log(res)
+            }); 
+        }
+
+    }
+</script>

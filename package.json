@@ -1,0 +1,15 @@
+{
+  "name": "emanaged_mold",
+  "version": "1.0.0",
+  "description": "Cross Mapping Tools",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "z-http": "^1.1.34",
+    "z-views": "^1.0.32"
+  },
+  "author": "ZadaheaD&Bridge",
+  "license": "ISC"
+}
