@@ -9,6 +9,21 @@ zview.init({ res: res });
 exports = module.exports = function (router) {
 
 
+
+    //uploadr
+    router.upload = (data, callback) => {
+        console.log(data.form);
+
+        callback('1');
+    }
+
+    //rabbit
+    router.rabbit = (data, callback) => {
+        router.master('rabbit', { }, callback);
+    }
+
+
+
     router.sections = {
         more: (data, callback) => {
             
@@ -53,7 +68,9 @@ exports = module.exports = function (router) {
         router.inhouse('zviews', {
             headline: 'This is a headline',
             info: 'This is a simple info',
-            list: list
+            list: list,
+            show: true, 
+            hide: false
         }, callback);
     }
 

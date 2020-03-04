@@ -1,0 +1,20 @@
+<layout>
+    <box>
+        <row>
+            <headline>RabbitMQ dummy</headline>
+        </row>
+        <row>
+            <uploader data-path="rabbit" data-title="Upload Large File" data-callback="rabbit.on.upload"></uploader>
+        </row>
+    </box>
+</layout>
+
+<script>
+    var rabbit = {
+        on: {
+            upload: () => {
+                console.log('uploaded');
+            }
+        }
+    }
+</script>

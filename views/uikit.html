@@ -45,9 +45,43 @@
                 ['datepicker', 'Pick up some date and time', '<datepicker />'],
                 ['dropdown', 'pick from a dropdown list[] { id, value }', '<dropdown list="mylist" def="Pick One" />'],
                 ['checkbox', 'checkbox', '<checkbox value="true"></checkbox>'],
-                ['radiobtn', 'radiobtn', radiobtn.join('\n')]
+                ['radiobtn', 'radiobtn', radiobtn.join('\n')],
+                ['uploader', 'upload of a file', docs.to.text('div[uploader]'), { hideResults: true }]
             ])
         }
     }
     core.init.await(puikit.init);
 </script>
+
+
+<ghost>
+    <div uploader>
+        <code>
+            //on html view
+
+            /*
+                data-path => is a value been transfered to the server so you can manage different upload requests
+                data-title => the title that will be writen on the button
+                data-callback => callback function on file load
+            */
+            <_uploader data-path="test" data-title="Upload File" data-callback="alertThis"></_uploader>
+        </code>
+    
+        <code>
+            //on server
+            router.upload = (data, callback) => {
+                console.log(data.form); //form will have all the data needed on the file
+
+                //data.form.path == "test"
+                //data.form.file.stream == stream of the file for you to handle and save
+                
+                callback('1'); //this value would be passed to the callback function
+            }
+        </code>
+    
+        <div clean>
+            //check this
+            <uploader data-path="test" data-title="Upload File" data-callback="alertThis"></uploader>
+        </div>
+    </div>
+</ghost>

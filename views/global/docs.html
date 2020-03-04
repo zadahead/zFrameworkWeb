@@ -44,8 +44,8 @@
         init: (list) => {
 
             list.forEach(item => {
-                var params = item[3];
-                var exm = typeof(item[2]) == 'string' ? item[2] : item[2][0];
+                var params = item[3] || {};
+                var exm = typeof(item[2]) == 'string' ? item[2] : item[2][0].val;
 
                 var setter = [
                     ['tabblock', 'data-id', item[0]],
@@ -72,7 +72,11 @@
                         var exms = item[2];
                         for (let i = 1; i < exms.length; i++) {
                             var cloned = $('[exm]', n).last().clone();
-                            cloned.html(docs.to.exp(exms[i]));
+                            if(exms[i].clean) {
+                                cloned.html(exms[i].val);
+                            }else {
+                                cloned.html(docs.to.exp(exms[i].val));
+                            }
 
                             $('[exm]', n).last().after(cloned);
                         }
@@ -85,7 +89,29 @@
 
         to: {
             exp: (val) => {
-                return val.replace(/&lt;\_/gi, '&lt;').replace(/!--_/gi, '').replace(/-->/gi, '&gt;').replace(/\</gi, '&lt;').replace(/\\}/gi, '}').replace(/\\{/gi, '{').replace(/\</gi, '&lt;').replace(/\n/gi, '<br />').replace(/    /gi, '<s></s>');
+                return val.replace(/&lt;\_/gi, '&lt;').replace(/_=/gi, '=').replace(/!--_/gi, '').replace(/-->/gi, '&gt;').replace(/\</gi, '&lt;').replace(/\\}/gi, '}').replace(/\\{/gi, '{').replace(/\</gi, '&lt;').replace(/\n/gi, '<br />').replace(/    /gi, '<s></s>');
+            },
+
+            text: (wrap) => {
+                var children = $(wrap).children();
+                if(children.length) {
+                    var list = [];
+                    children.each((i, t) => {
+                        if($(t).attr('clean') == "") {
+                            list.push({ val: $(t), clean: true });
+                        } else {
+                            list.push({ val: $(t)[0].innerHTML });
+                        }
+                        
+                    })
+
+                    return list;
+                } else {
+                    var html = $(wrap)[0].innerHTML;
+
+                    return html;
+                }
+               
             }
         },
 

@@ -18,11 +18,14 @@
         init: () => {
             docs.init([
                 ['install', 'A simple npm install', 'npm install z-views'],
-                ['start', 'A basic start', $('code[start]')[0].innerHTML],
-                ['example', 'A simple example for rendering "example page"', [$('code[example]')[0].innerHTML, $('code[example]')[1].innerHTML, $('code[example]')[2].innerHTML], { hideResults: true }],
-                ['copy / paste', 'You can wrap any html block you like, and paste this in other places on page', [$('code[copy]')[0].innerHTML, $('code[copy]')[1].innerHTML, $('code[copy]')[2].innerHTML], { hideResults: true }],
-                ['loop', 'Will loop through an injected list and repeat inner html as needed', [$('code[loop]')[0].innerHTML, $('code[loop]')[1].innerHTML, $('code[loop]')[2].innerHTML], { hideResults: true }],
-                ['template', 'load a template with a src => _root/views/ is the default root path', $('code[template]')[0].innerHTML, { hideResults: true }],
+                ['start', 'A basic start', docs.to.text('code[start]')],
+                ['example', 'A simple example for rendering "example page"',  docs.to.text('div[example]'), { hideResults: true }],
+                ['copy / paste', 'You can wrap any html block you like, and paste this in other places on page', docs.to.text('div[copy]'), { hideResults: true }],
+                ['loop', 'Will loop through an injected list and repeat inner html as needed', docs.to.text('div[loop]'), { hideResults: true }],
+                ['template', 'load a template with a src => _root/views/ is the default root path', docs.to.text('code[template]'), { hideResults: true }],
+                ['if', 'an "if" statement for a conditional render/unrender of an element', docs.to.text('div[if]'), { hideResults: true }],
+                ['if else', 'an "if / else" statement for a conditional render/unrender of an element', docs.to.text('div[ifelse]'), { hideResults: true }],
+                ['conditions', 'rendering a value/attribute based on condition', docs.to.text('div[conditions]'), { hideResults: true }]
             ])
         }
     }
@@ -44,8 +47,8 @@
         zview.render(template, data, callback);
     </code>
 
-   <div>
-        <code example>
+   <div example>
+        <code>
             //on route
             zview.render('example', {
                 headline: 'This is a headline',
@@ -53,13 +56,13 @@
             }, callback);
         </code>
         
-        <code example>
+        <code>
             //on html page -- located in _root_/views/example.html
             <headline>\{\{headline\}\}</headline>
             <info>\{\{info\}\}</info>
         </code>
         
-        <code example>
+        <code>
             //rendered page
             <headline>{{headline}}</headline>
             <info>{{info}}</info>
@@ -67,8 +70,8 @@
    </div>
 
 
-   <div>
-        <code copy>
+   <div copy>
+        <code>
             //on html page -- add a "copy" tag and inside add what ever html you like
             //set name of the copy as an attribute (Ex: 'example')
     
@@ -77,7 +80,7 @@
             </_copy>
         </code>
         
-        <code copy>
+        <code>
             //now you can add "paste" tag with and name of the copy as an attribute as much as you like
             <_paste example></_paste>
             <_paste example></_paste>
@@ -85,7 +88,7 @@
             <_paste example></_paste>
         </code>
         
-        <code copy>
+        <code>
             //result 
     
             <copy example>
@@ -99,8 +102,8 @@
         </code>
    </div>
 
-    <div>
-        <code loop>
+    <div loop>
+        <code>
             //on route
 
             var list = [
@@ -116,7 +119,7 @@
             }, callback);
         </code>
     
-        <code loop>
+        <code>
             //on html page -- located in _root_/views/example.html
             <headline>\{\{headline\}\}</headline>
             <info>\{\{info\}\}</info>
@@ -133,7 +136,7 @@
             </rows>
         </code>
     
-        <code loop>
+        <code>
             //on html page -- located in _root_/views/example.html
             <headline>{{headline}}</headline>
             <info>{{info}}</info>
@@ -155,5 +158,124 @@
     <code template>
         <_template src="/global/docs"></_template>
     </code>
+
+    <div if>
+        <code>
+            //on the html view, add an if statement
+
+            <_if cond_="show">
+                <titla>show this</titla>
+            </_if>
+
+            <_if cond_="!hide">
+                <titla>show this as well</titla>
+            </_if>
+        </code>
+        <code>
+            //on route
+            
+            zview.render('example', {
+                show: true,
+                hide: false
+            }, callback);
+        </code>
+        <code>
+            //rendered page
+            <if cond="show">
+                <titla>show this</titla>
+            </if>
+            
+            <if cond="!hide">
+                <titla>show this as well</titla>
+            </if>
+        </code>
+    </div>
+
+    <div ifelse>
+        <code>
+                //on the html view, add an if statement
+    
+                <_if cond_="show">
+                    <then>
+                        <titla>show this</titla>
+                    </then>
+                    <else>
+                        <titla>show the other</titla>
+                    </else>
+                </_if>
+    
+                <_if cond_="hide">
+                    <then>
+                        <titla>show this</titla>
+                    </then>
+                    <else>
+                        <titla>show the other instead</titla>
+                    </else>
+                </_if>
+            </code>
+        <code>
+                //on route
+                
+                zview.render('example', {
+                    show: true,
+                    hide: false
+                }, callback);
+            </code>
+        <code>
+                //rendered page
+                <if cond_="show">
+                    <then>
+                        <titla>show this</titla>
+                    </then>
+                    <else>
+                        <titla>show the other</titla>
+                    </else>
+                </if>
+                
+                <if cond_="hide">
+                    <then>
+                        <titla>show this</titla>
+                    </then>
+                    <else>
+                        <titla>show the other instead</titla>
+                    </else>
+                </if>
+        </code>
+    </div>
+
+
+    <div conditions>
+        <code>
+            //on the html view, add condition (attention! you need to add "data.#parameter" when adding condition)
+
+            <row>
+                <info>this is a conditioned value, set to \{$\{data.show ? 'SHOW' : 'hide'\}\}</info>
+                <info>this is a conditioned value, set to \{$\{data.hide ? 'HIDE' : 'show'\}\}</info>
+            </row>
+            <row>
+                <tab class="\{$\{data.show ? 'selected' : ''\}\}">selected tab</tab>
+                <tab class="\{$\{data.hide ? 'selected' : ''\}\}">un selected tab</tab>
+            </row>
+        </code>
+        <code>
+            //on route
+            
+            zview.render('example', {
+                show: true,
+                hide: false
+            }, callback);
+        </code>
+        <code clean>
+            //rendered page
+            <row>
+                <info>this is a conditioned value, set to {${data.show ? 'SHOW' : 'hide'}}</info>
+                <info>this is a conditioned value, set to {${data.hide ? 'HIDE' : 'show'}}</info>
+            </row>
+            <row>
+                <tab class="{${data.show ? 'selected' : ''}}">selected tab</tab>
+                <tab class="{${data.hide ? 'selected' : ''}}">un selected tab</tab>
+            </row>
+        </code>
+    </div>
 
 </ghost>

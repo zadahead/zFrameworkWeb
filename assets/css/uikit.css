@@ -1904,6 +1904,7 @@ uploader [bar] {
     height: 3px;
     background-color: #e1e1e1;
     width: 10em;
+    left: 3em;
 }
 
 uploader [bar] bar {
@@ -1914,6 +1915,7 @@ uploader [bar] bar {
     margin: 0;
     left: 0;
     top: 0;
+    margin: 0 !important;
 }
 
 uploader [bar] bar per {
